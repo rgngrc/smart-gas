@@ -31,20 +31,6 @@ class FuelController extends Controller
             'price_per_liter' => $request->price_per_liter,
         ]);
 
-        return back()->with('success', 'Fuel entry recorded!');
-    }
-
-    public function destroy($id)
-    {
-        $entry = FuelEntry::findOrFail($id);
-        
-        // Ensure user owns this entry
-        if ($entry->user_id !== auth()->id()) {
-            abort(403);
-        }
-
-        $entry->delete();
-        
         return redirect()->back();
     }
 }
